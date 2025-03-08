@@ -1,0 +1,22 @@
+{% extends 'app.html' %}
+{% block content %}
+<div class="container">
+  <h2>Register Your Pet</h2>
+  <form action="{{ url_for('register_pet') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.name.label(for="name") }}
+      {{ form.name(id="name", class="form-control") }}
+      {% if form.name.errors %}
+        <ul class="text-danger">
+          {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    {{ form.submit(class="btn btn-primary mt-4") }}
+  </form>
+  <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-4">Back to Dashboard</a>
+</div>
+{% endblock %}

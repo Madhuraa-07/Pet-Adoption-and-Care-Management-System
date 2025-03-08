@@ -1,0 +1,27 @@
+{% extends 'app.html' %}
+{% block content %}
+<div class="container">
+  <h2>Schedule Pet Care</h2>
+  <form action="{{ url_for('schedule_care') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.pet_id.label(for="pet_id") }}
+      {{ form.pet_id(id="pet_id", class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.vet_id.label(for="vet_id") }}
+      {{ form.vet_id(id="vet_id", class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.status.label(for="status") }}
+      {{ form.status(id="status", class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.care_date.label(for="care_date") }}
+      {{ form.care_date(id="care_date", class="form-control", type="date") }}
+    </div>
+    {{ form.submit(class="btn btn-primary mt-4") }}
+  </form>
+  <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-4">Back to Dashboard</a>
+</div>
+{% endblock %}

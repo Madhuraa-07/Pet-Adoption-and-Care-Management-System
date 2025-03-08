@@ -1,0 +1,25 @@
+{% extends 'app.html' %}
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ user[1] }}</h2>
+    <p>User Dashboard</p>
+    <ul>
+        <li>Name: {{ user[1] }}</li>
+        <li>Email: {{ user[2] }}</li>
+    </ul>
+    <h3>Your Pets</h3>
+    {% if pets %}
+        <ul>
+        {% for pet in pets %}
+            <li>{{ pet[1] }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't registered any pets yet.</p>
+    {% endif %}
+    <a href="{{ url_for('register_pet') }}" class="btn btn-primary">Register a Pet</a>
+    <a href="{{ url_for('schedule_care') }}" class="btn btn-success">Schedule Pet Care</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-dark">Logout</a>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Home</a>
+</div>
+{% endblock %}

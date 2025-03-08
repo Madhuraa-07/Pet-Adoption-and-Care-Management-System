@@ -1,0 +1,82 @@
+{% extends 'app.html' %}
+{% block content %}
+<header class="header">
+    <div class="header-content">
+        <h1 class="logo">Pawsss</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="#">Pet Listing</a></li>
+                <li><a href="{{ url_for('dashboard') }}">User Profile</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="main-content">
+    <section class="hero">
+        <img src="{{ url_for('static', filename='images/pets-hero.jpg') }}" alt="Cats and dogs" class="hero-image">
+        <div class="hero-overlay">
+            <h2>Welcome to Pawsss!</h2>
+        </div>
+    </section>
+
+    <section class="pet-gallery">
+        <div class="container">
+            <h3>Available Pets</h3>
+        </div>
+        <div class="pet-scroll">
+            {% for i in range(5) %}
+            <div class="pet-card">
+                <img src="{{ url_for('static', filename='images/pet' ~ loop.index ~ '.jpg') }}" alt="Pet {{ loop.index }}">
+                <div class="pet-info">
+                    <h4>Pet Name {{ loop.index }}</h4>
+                    <p>Breed {{ loop.index }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="view-all-container">
+                <button class="view-all">View All</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="care-tips">
+        <div class="container">
+            <h3>Top Care Tips</h3>
+        </div>
+        <div class="tips-scroll">
+            {% for i in range(3) %}
+            <div class="tip-card">
+                <h4>Care Tip {{ loop.index }}</h4>
+                <p>Brief description of care tip {{ loop.index }}. This tip will help you take better care of your pet.</p>
+            </div>
+            {% endfor %}
+            <div class="view-all-container">
+                <button class="view-all">View All Tips</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h3>About Us</h3>
+            <p>
+                Pawsss is dedicated to connecting loving homes with pets in need of adoption. We also provide comprehensive care advice to ensure your new family member thrives in their forever home.
+            </p>
+            <a href="#" class="contact-link">Contact Us &rarr;</a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2023 Pawsss. All rights reserved.</p>
+    </div>
+</footer>
+{% endblock %}
